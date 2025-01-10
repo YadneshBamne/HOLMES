@@ -1,22 +1,27 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
 import Landing from './pages/landing';
-import AppLayout from './layouts/app-layout';
+import Education from './pages/Education';
 
 
 const router = createBrowserRouter([
   {
-    element: <AppLayout/>,
+    element:<Landing/>,
     children: [
       {
         path:'/',
         element:<Landing/>,
+      },
+      {
+        path:'/education',
+        element:<Education/>,
       },
     ],
   },
 ]);
 
 function App() {
+  
   return (
       <RouterProvider router={router}/>
   );
