@@ -16,7 +16,7 @@ if (!PUBLISHABLE_KEY) {
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ClerkProvider appearance={{
-        baseTheme: [shadesOfPurple],
+        baseTheme: [dark],
       }} publishableKey={PUBLISHABLE_KEY}>
       <App />
     </ClerkProvider>

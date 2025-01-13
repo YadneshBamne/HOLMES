@@ -2,9 +2,9 @@ import { cn } from "@/lib/utils";
 
 export default function RetroGrid({
   className,
-  angle = 65,
-  cellSize = 60,
-  opacity = 0.5,
+  angle = 45,
+  cellSize = 150,
+  opacity = 1,
   lightLineColor = "gray",
   darkLineColor = "gray",
   ...props
