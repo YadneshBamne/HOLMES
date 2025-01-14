@@ -47,6 +47,7 @@ export function Locations() {
       location: "Dadar, Mumbai",
       price: "₹7,500/month",
       features: "Shared Kitchen, Housekeeping",
+      image:"https://gsh-cdn.sgp1.cdn.digitaloceanspaces.com/assets/img/no-broker-thane/PRT687/room-on-rent-in-thane/pg-in-bhiwandi.jpg",
       liked: false, // Initial liked status
     },
     {
@@ -54,6 +55,7 @@ export function Locations() {
       location: "Thane, Mumbai",
       price: "₹6,000/month",
       features: "Power Backup, Parking",
+      image:"https://img.staticmb.com/mbphoto/pg/grd2/cropped_images/2022/Oct/08/Photo_h220_w280/GR2-322143-1518507_220_280.jpg",
       liked: false, // Initial liked status
     },
     {
@@ -61,6 +63,7 @@ export function Locations() {
       location: "Bandra, Mumbai",
       price: "₹12,000/month",
       features: "Gym, Meals, Security",
+      image:"https://www.colive.com/blog/wp-content/uploads/2018/04/qedqd.jpg",
       liked: false, // Initial liked status
     },
     {
@@ -68,6 +71,7 @@ export function Locations() {
       location: "Andheri, Mumbai",
       price: "₹5,500/month",
       features: "Basic Amenities, Shared Rooms",
+      image:"https://www.realtynmore.com/wp-content/uploads/2023/09/b2835151fd0aebf6702be15777e4683e3eb73704-scaled.jpg",
       liked: false, // Initial liked status
     },
     {
@@ -75,6 +79,7 @@ export function Locations() {
       location: "Dadar, Mumbai",
       price: "₹9,000/month",
       features: "Private Rooms, WiFi",
+      image:"https://shreedurgapg.com/wp-content/uploads/2022/11/PG-accommodations-in-Gurgaon-Shree-Durga-PG.jpg",
       liked: false, // Initial liked status
     },
     {
@@ -82,6 +87,7 @@ export function Locations() {
       location: "Thane, Mumbai",
       price: "₹6,500/month",
       features: "Laundry, WiFi, 24x7 Security",
+      image:"https://content.jdmagicbox.com/comp/def_content/paying_guest_accommodations/default-paying-guest-accommodations-6.jpg",
       liked: false, // Initial liked status
     },
   ];
