@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import OpenLayersMap from "@/components/maps";
 import {
   Select,
   SelectItem,
@@ -16,6 +17,7 @@ import {
 } from "@/components/ui/card";
 import { Heart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import Footer from "@/components/Footer";
 
 export function Locations() {
   const [searchText, setSearchText] = useState("");
@@ -135,6 +137,7 @@ export function Locations() {
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="p-6">
+        {/* Search Section */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
           <Input
             type="text"
@@ -144,7 +147,7 @@ export function Locations() {
             className="flex-grow rounded-full"
           />
           <Select onValueChange={setSelectedLocation}>
-            <SelectTrigger className="w-48 rounded-full ">
+            <SelectTrigger className="w-48 rounded-full">
               <SelectValue placeholder="Filter by Location" />
             </SelectTrigger>
             <SelectContent className="bg-white rounded-2xl mt-3">
@@ -162,6 +165,10 @@ export function Locations() {
             Search
           </Button>
         </div>
+  
+        {/* Map Section */}
+  
+        {/* PG Cards Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPGs.length > 0 ? (
             filteredPGs.map((pg, index) => (
@@ -173,9 +180,9 @@ export function Locations() {
                 <img
                   src={pg.image}
                   alt={pg.name}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 object-cover w-full h-full "
                 />
-
+  
                 {/* Overlay Content */}
                 <div className="relative z-10 p-6 bg-gradient-to-b from-transparent to-black rounded-2xl">
                   <CardHeader>
@@ -194,7 +201,7 @@ export function Locations() {
                     >
                       View Details
                     </Button>
-
+  
                     <button
                       onClick={() => handleLikeToggle(pg)}
                       className="ml-2 text-xl"
@@ -207,8 +214,6 @@ export function Locations() {
                     </button>
                   </CardFooter>
                 </div>
-
-                {/* Dark Overlay for Readability */}
               </Card>
             ))
           ) : (
@@ -218,14 +223,9 @@ export function Locations() {
           )}
         </div>
       </div>
-
-      {/* <Button
-        variant="primary"
-        className="bg-[#FF9F1C] text-black rounded-xl mt-6"
-        onClick={handleViewFavourites}
-      >
-        View Favourites
-      </Button> */}
+  
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

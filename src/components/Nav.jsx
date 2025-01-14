@@ -10,6 +10,7 @@ import {
 } from "@clerk/clerk-react";
 import { Heart } from "lucide-react";
 import { Link } from "react-router-dom";
+import { AboutUs } from "@/pages/aboutus";
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useUser();
@@ -26,10 +27,8 @@ function Nav() {
   const [search, setSearch] = useSearchParams();
   const { user } = useUser();
 
-
-
   useEffect(() => {
-    if (search.get('sign-in')) {
+    if (search.get("sign-in")) {
       setShowSignIn(true);
     }
   }, [search]);
@@ -42,12 +41,17 @@ function Nav() {
 
   return (
     <>
-      <nav className="bg-[#87A2FF] text-black">
+     <link
+        href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Playwrite+AU+SA:wght@100..400&display=swap"
+        rel="stylesheet"
+      />
+      <nav className="bg-blue-400 text-black">
         <div className="h-10vh flex justify-between items-center px-4 py-4 md:px-20 md:py-4">
           {/* Logo */}
           <div className="flex items-center flex-1 rounded-b-lg">
-            <Link to="/"><span className="text-3xl font-bold">HOLMES</span></Link>
-            
+            <Link to="/">
+              <span className="text-3xl font-bold ">HOLMES</span>
+            </Link>
           </div>
 
           {/* Navigation Links */}
@@ -56,30 +60,38 @@ function Nav() {
               <SignedOut>
                 {/* Links for Signed Out Users */}
                 <Button
-                  variant="destructive"
+                  variant="outline"
                   onClick={() => setShowSignIn(true)}
+                  className="rounded-xl bg-black text-white"
                 >
                   Login
                 </Button>
               </SignedOut>
               <SignedIn>
+                <Link to="/aboutus">
+                <Button
+                  variant="outline"
+                  className="rounded-xl bg-white text-black"
+                >
+                  About Us
+                </Button>
+                </Link>
                 {/* Links for Signed In Users */}
                 <UserButton
-              appearance={{
-                elements: {
-                  avatarBox: 'w-10 h-10',
-                },
-              }}
-            >
-              <UserButton.MenuItems>
-                <UserButton.Link
-                  label="Favourite PGs"
-                  labelIcon={<Heart size={15} />}
-                  href="/favourites-pgs"
-                />
-              </UserButton.MenuItems>
-            </UserButton>
-
+                  appearance={{
+                    elements: {
+                      avatarBox: "w-10 h-10",
+                    },
+                  }}
+                >
+                  <UserButton.MenuItems>
+                    <UserButton.Link
+                      label="Favourite PGs"
+                      labelIcon={<Heart size={15} />}
+                      href="/favourites-pgs"
+                    />
+                  </UserButton.MenuItems>
+                </UserButton>
               </SignedIn>
             </ul>
           </div>
@@ -90,12 +102,13 @@ function Nav() {
       <div className="lg:hidden flex items-center justify-center gap-4 px-4 py-4">
         <SignedOut>
           <Button
-            variant="destructive"
+            variant="outline"
             onClick={() => setShowSignIn(true)}
-            className="w-full"
+            className="rounded-xl bg-black text-white"
           >
             Login
           </Button>
+          {/* <Button variant='outline' className='rounded-xl bg-black text-white'>Select PGs</Button> */}
         </SignedOut>
       </div>
 

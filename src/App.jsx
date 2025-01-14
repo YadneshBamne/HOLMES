@@ -9,9 +9,7 @@ import Favourites from './components/favourites';
 import ProtectedRoute from './components/protected-route';
 import { useNavigate } from 'react-router-dom';
 import { PGDetails } from './pages/pgdetails';
-
-
-
+import { AboutUs } from './pages/aboutus';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +18,10 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<Landing/>,
+      },
+      {
+        path:'/aboutus',
+        element:<AboutUs/>,
       },
       {
         path:'/favourites-pgs',
