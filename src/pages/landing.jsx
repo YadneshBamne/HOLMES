@@ -74,7 +74,7 @@ const Landing = () => {
                 
               </SignedIn>
             ))}
-            {/* <MarqueeDemo/> */}
+            
           </div>
 
           {/* <Carousel className="z-50 text-5xl text-black">
@@ -99,9 +99,12 @@ const Landing = () => {
               </CarouselItem>
             </CarouselContent>
           </Carousel> */}
+          
           <RetroGrid />
+          
         </div>
-
+        <div className=""><MarqueeDemo/></div>
+        
         {/* <div className="z-10 flex items-center justify-center bg-white dark:bg-black">
           <TextReveal text="Your One step solution for finding PG's." />
         </div> */}
@@ -150,7 +153,6 @@ const Landing = () => {
           </BoxReveal>
       
       </div> */}
-      <MarqueeDemo className=""/>
       <Accordion type="single" collapsible className="p-10">
       {faqs.map((faq, index)=>{
       return(
