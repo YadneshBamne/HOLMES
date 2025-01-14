@@ -10,7 +10,7 @@ function Footer() {
         <a href="/" className="hover:underline  ">
           HOLMES™
         </a>
-        . All Rights Reserved Sarakshi More.
+        . All Rights Reserved .
       </span>
       
     </div>

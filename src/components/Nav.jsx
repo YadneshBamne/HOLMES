@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useSearchParams } from "react-router-dom";
 import {
   SignedIn,
   SignedOut,
@@ -7,11 +8,31 @@ import {
   SignIn,
   UserButton,
 } from "@clerk/clerk-react";
+import { Heart } from "lucide-react";
+import { Link } from "react-router-dom";
+
+const ProtectedRoute = ({ children }) => {
+  const { user } = useUser();
+
+  if (!user) {
+    return <Navigate to="/sign-in" replace />; // Redirect to login if not authenticated
+  }
+
+  return children; // Render the protected component
+};
 
 function Nav() {
   const [showSignIn, setShowSignIn] = useState(false);
+  const [search, setSearch] = useSearchParams();
   const { user } = useUser();
 
+
+
+  useEffect(() => {
+    if (search.get('sign-in')) {
+      setShowSignIn(true);
+    }
+  }, [search]);
   // Handle overlay click to close the SignIn modal
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -21,11 +42,12 @@ function Nav() {
 
   return (
     <>
-      <nav className="bg-[#FF9F1C] text-black">
+      <nav className="bg-[#87A2FF] text-black">
         <div className="h-10vh flex justify-between items-center px-4 py-4 md:px-20 md:py-4">
           {/* Logo */}
           <div className="flex items-center flex-1 rounded-b-lg">
-            <span className="text-3xl font-bold">HOLMES</span>
+            <Link to="/"><span className="text-3xl font-bold">HOLMES</span></Link>
+            
           </div>
 
           {/* Navigation Links */}
@@ -43,12 +65,21 @@ function Nav() {
               <SignedIn>
                 {/* Links for Signed In Users */}
                 <UserButton
-                  appearance={{
-                    elements: {
-                      avatarBox: "w-10 h-10",
-                    },
-                  }}
+              appearance={{
+                elements: {
+                  avatarBox: 'w-10 h-10',
+                },
+              }}
+            >
+              <UserButton.MenuItems>
+                <UserButton.Link
+                  label="Favourite PGs"
+                  labelIcon={<Heart size={15} />}
+                  href="/favourites-pgs"
                 />
+              </UserButton.MenuItems>
+            </UserButton>
+
               </SignedIn>
             </ul>
           </div>

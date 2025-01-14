@@ -6,6 +6,11 @@ import { Locations } from './pages/locations';
 import { AppWindow } from 'lucide-react';
 import AppLayout from './layouts/app-layout';
 import Favourites from './components/favourites';
+import ProtectedRoute from './components/protected-route';
+import { useNavigate } from 'react-router-dom';
+import { PGDetails } from './pages/pgdetails';
+
+
 
 
 const router = createBrowserRouter([
@@ -21,12 +26,18 @@ const router = createBrowserRouter([
         element:<Favourites/>,
       },
       {
+        path:"/pg-details" ,
+        element:<PGDetails />,
+      },
+      {
         path:'/education',
         element:<Education/>,
       },
       {
         path:'/listed-PGs',
-        element:<Locations/>,
+        element:
+        <ProtectedRoute><Locations/>,</ProtectedRoute>
+        
       },
     ],
   },

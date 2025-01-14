@@ -8,10 +8,12 @@ import BoxReveal from "@/components/ui/box-reveal";
 import Globe from "@/components/ui/globe";
 import { Link } from "react-router-dom";
 import { RainbowButton } from "@/components/ui/rainbow-button";
+import ShinyButton from "@/components/ui/shiny-button";
+import { Button } from "@/components/ui/button";
 
 const Landing = () => {
   return (
-    <main className="bg-[#FDFFFC]">
+    <main className="bg-[#ff7700]">
       <div className="w-full ">
         {/* Info */}
         <div className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-background bg-white grid-cols-2 mx-auto">
@@ -29,8 +31,8 @@ const Landing = () => {
               }
               
             ].map(({ text, url }, index) => (
-              <Link to={url} key={index} className="relative">
-                <RainbowButton className="z-50">Select PG</RainbowButton>;
+              <Link to={url} key={index} className="relative z-30">
+               <Button variant='outline' className='rounded-xl bg-black text-white'>Select PGs</Button>
               </Link>
             ))}
           </div>

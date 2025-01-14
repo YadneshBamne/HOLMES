@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -14,13 +14,14 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
-import { Heart } from "react-feather";
-// import { useRouter } from "next/router"; // Import useRouter
+import { Heart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export function Locations() {
   const [searchText, setSearchText] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");
   const [favourites, setFavourites] = useState([]);
+  const navigate = useNavigate();
 
   const pgData = [
     {
@@ -28,7 +29,8 @@ export function Locations() {
       location: "Andheri, Mumbai",
       price: "₹8,000/month",
       features: "WiFi, Meals, Laundry",
-
+      image:
+        "https://img.staticmb.com/mbphoto/pg/grd2/cropped_images/2024/Nov/07/full_photo/GR2-470723-2302073.jpeg",
       liked: false, // Initial liked status
     },
     {
@@ -36,6 +38,8 @@ export function Locations() {
       location: "Bandra, Mumbai",
       price: "₹10,000/month",
       features: "Air Conditioning, 24x7 Security",
+      image:
+        "https://img.staticmb.com/mbphoto/pg/grd2/cropped_images/2024/May/03/full_photo/GR2-438977-2121783.jpeg",
       liked: false, // Initial liked status
     },
     {
@@ -82,6 +86,13 @@ export function Locations() {
     },
   ];
 
+  // Load favourites from localStorage on initial render
+  useEffect(() => {
+    const savedFavourites =
+      JSON.parse(localStorage.getItem("favourites")) || [];
+    setFavourites(savedFavourites);
+  }, []);
+
   const handleSearch = () => {
     return pgData.filter((pg) => {
       const matchesText = pg.name
@@ -95,22 +106,28 @@ export function Locations() {
   };
 
   const handleLikeToggle = (pg) => {
+    let updatedFavourites;
     const isLiked = favourites.some((item) => item.name === pg.name);
+
     if (isLiked) {
-      setFavourites(favourites.filter((item) => item.name !== pg.name));
+      updatedFavourites = favourites.filter((item) => item.name !== pg.name);
     } else {
-      setFavourites([...favourites, pg]);
+      updatedFavourites = [...favourites, pg];
     }
+
+    // Update localStorage and state
+    localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
+    setFavourites(updatedFavourites);
   };
 
   const filteredPGs = handleSearch();
 
   const handleViewFavourites = () => {
-    router.push("/favourites"); // Navigate to the favourites page
+    navigate("/favourites");
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-100">
       <div className="p-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
           <Input
@@ -118,13 +135,13 @@ export function Locations() {
             placeholder="Search for PG"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            className="flex-grow rounded-full bg-white shadow-xl"
+            className="flex-grow rounded-full"
           />
           <Select onValueChange={setSelectedLocation}>
-            <SelectTrigger className="w-48 rounded-xl bg-white shadow-xl">
+            <SelectTrigger className="w-48 rounded-full ">
               <SelectValue placeholder="Filter by Location" />
             </SelectTrigger>
-            <SelectContent className="bg-white">
+            <SelectContent className="bg-white rounded-2xl mt-3">
               <SelectItem value="all">All Locations</SelectItem>
               <SelectItem value="andheri">Andheri</SelectItem>
               <SelectItem value="bandra">Bandra</SelectItem>
@@ -142,38 +159,50 @@ export function Locations() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPGs.length > 0 ? (
             filteredPGs.map((pg, index) => (
-              <Card key={index} className="bg-white shadow-xl rounded-2xl p-4">
-                <CardHeader>
-                  <h2 className="text-lg font-bold text-black">{pg.name}</h2>
-                  <p className="text-gray-500">{pg.location}</p>
-                </CardHeader>
-                <CardContent>
-                  {/* <img
-                    src={pg.image}
-                    alt={pg.name}
-                    className="w-full h-40 object-cover rounded-md"
-                  /> */}
-                  <p className="text-gray-800">{pg.price}</p>
-                  <p className="text-gray-600">{pg.features}</p>
-                </CardContent>
-                <CardFooter>
-                  <Button
-                    variant="outline"
-                    className="text-purple-600 border-purple-600 rounded-full"
-                  >
-                    View Details
-                  </Button>
-                  <button
-                    onClick={() => handleLikeToggle(pg)}
-                    className={`ml-2 text-xl ${
-                      favourites.some((item) => item.name === pg.name)
-                        ? "text-red-600"
-                        : "text-gray-500"
-                    }`}
-                  >
-                    <Heart />
-                  </button>
-                </CardFooter>
+              <Card
+                key={index}
+                className="relative bg-white shadow-md rounded-2xl overflow-hidden"
+              >
+                {/* Background Image */}
+                <img
+                  src={pg.image}
+                  alt={pg.name}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+
+                {/* Overlay Content */}
+                <div className="relative z-10 p-6 bg-gradient-to-b from-transparent to-black rounded-2xl">
+                  <CardHeader>
+                    <h2 className="text-lg font-bold text-white">{pg.name}</h2>
+                    <p className="text-gray-300">{pg.location}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-100">{pg.price}</p>
+                    <p className="text-gray-400">{pg.features}</p>
+                  </CardContent>
+                  <CardFooter className="flex justify-between items-center">
+                    <Button
+                      variant="outline"
+                      className="text-white border-white rounded-full"
+                      onClick={() => navigate("/pg-details", { state: { pg } })}
+                    >
+                      View Details
+                    </Button>
+
+                    <button
+                      onClick={() => handleLikeToggle(pg)}
+                      className="ml-2 text-xl"
+                    >
+                      {favourites.some((item) => item.name === pg.name) ? (
+                        <Heart size={20} stroke="red" fill="red" />
+                      ) : (
+                        <Heart size={20} className="text-white" />
+                      )}
+                    </button>
+                  </CardFooter>
+                </div>
+
+                {/* Dark Overlay for Readability */}
               </Card>
             ))
           ) : (
@@ -183,6 +212,14 @@ export function Locations() {
           )}
         </div>
       </div>
+
+      {/* <Button
+        variant="primary"
+        className="bg-[#FF9F1C] text-black rounded-xl mt-6"
+        onClick={handleViewFavourites}
+      >
+        View Favourites
+      </Button> */}
     </div>
   );
 }
