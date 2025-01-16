@@ -87,6 +87,9 @@ export function AboutUs() {
               <Link to="https://www.linkedin.com/in/atharva-gourshete-b2a66927b/" className="relative">
                 <InteractiveHoverButton text="LinkedIn" />
               </Link>
+              <Link to="https://github.com/AtharvaGGourshete" className="relative ml-5">
+                <InteractiveHoverButton text="GitHub" />
+              </Link>
             </div>
           </div>
         </div>
@@ -103,6 +106,9 @@ export function AboutUs() {
             <div className="mt-4">
               <Link to="https://www.linkedin.com/in/om-date-552755282/" className="relative">
                 <InteractiveHoverButton text="LinkedIn" />
+                <Link to="https://github.com/OmDate" className="relative ml-5">
+                <InteractiveHoverButton text="GitHub" />
+              </Link>
               </Link>
             </div>
           </div>

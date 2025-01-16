@@ -64,14 +64,14 @@ function Nav() {
                   onClick={() => setShowSignIn(true)}
                   className="rounded-xl bg-black text-white"
                 >
-                  Login
+                  Login/Sign Up
                 </Button>
               </SignedOut>
               <SignedIn>
                 <Link to="/aboutus">
                 <Button
-                  variant="outline"
-                  className="rounded-xl bg-white text-black"
+                  variant=""
+                  className="rounded-xl bg-white text-black shadow-2xl hover:shadow-2xl"
                 >
                   About Us
                 </Button>
@@ -111,7 +111,7 @@ function Nav() {
             onClick={() => setShowSignIn(true)}
             className="rounded-xl bg-black text-white"
           >
-            Login
+            Login/Sign Up
           </Button>
           {/* <Button variant='outline' className='rounded-xl bg-black text-white'>Select PGs</Button> */}
         </SignedOut>
