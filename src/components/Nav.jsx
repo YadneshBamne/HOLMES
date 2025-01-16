@@ -90,6 +90,11 @@ function Nav() {
                       labelIcon={<Heart size={15} />}
                       href="/favourites-pgs"
                     />
+                    <UserButton.Link
+                      label="Cart"
+                      labelIcon={<Heart size={15} />}
+                      href="/cart"
+                    />
                   </UserButton.MenuItems>
                 </UserButton>
               </SignedIn>

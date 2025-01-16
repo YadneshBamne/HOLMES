@@ -20,5 +20,5 @@ createRoot(document.getElementById('root')).render(
       }} publishableKey={PUBLISHABLE_KEY}>
       <App />
     </ClerkProvider>
-  </StrictMode>,
+  </StrictMode>
 )

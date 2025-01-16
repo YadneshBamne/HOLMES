@@ -1,9 +1,15 @@
+"use client"
+ 
+import { useToast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 export function PGDetails() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { toast } = useToast()
 
   // Retrieve PG details passed via state
   const pg = location.state?.pg;
@@ -44,12 +50,25 @@ export function PGDetails() {
             <h3 className="text-xl font-semibold text-black">Ratings</h3>
             <p className="text-gray-600 mt-2">4.5/5 (200 Reviews)</p>
           </div>
+          <div className="gap-2 flex">
           <Button
             onClick={() => navigate(-1)}
             className="mt-6 bg-[#FF9F1C] text-black rounded-xl"
           >
             Back
           </Button>
+          <Button
+          className="mt-6 bg-[#FF9F1C] text-black rounded-xl"
+      variant="outline"
+      onClick={() => {
+        toast({
+          title: "PG Added to the cart",
+        })
+      }}
+    >
+      Add to cart
+    </Button>
+          </div>
         </div>
       </div>
     </div>
