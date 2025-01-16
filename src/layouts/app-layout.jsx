@@ -1,13 +1,15 @@
 import Nav from '@/components/Nav'
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import { Toaster } from "@/components/ui/toaster"
 
 const AppLayout = () => {
   return (
-    <div>
-     <div className='grid-background'></div>
-     <main className='min-h-screen container mx-auto  bg-slate-600'>
+    <div className='bg-white'>
+     
+     <main className='min-h-screen'>
       <Nav/>
+      <Toaster />
       <Outlet />
      </main>
     </div>

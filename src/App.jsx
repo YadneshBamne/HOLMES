@@ -1,42 +1,63 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import './App.css'
-import Landing from './pages/landing';
-import Education from './pages/Education';
-import { Locations } from './pages/locations';
-import { AppWindow } from 'lucide-react';
-import AppLayout from './layouts/app-layout';
-import Favourites from './components/favourites';
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./App.css";
+import Landing from "./pages/landing";
+import Education from "./pages/Education";
+import { Locations } from "./pages/locations";
+import { AppWindow } from "lucide-react";
+import AppLayout from "./layouts/app-layout";
+import Favourites from "./components/favourites";
+import ProtectedRoute from "./components/protected-route";
+import { useNavigate } from "react-router-dom";
+import { PGDetails } from "./pages/pgdetails";
+import { AboutUs } from "./pages/aboutus";
+import Addtocart from "./pages/Addtocart";
 
 const router = createBrowserRouter([
   {
-    element:<AppLayout/>,
+    element: <AppLayout />,
     children: [
       {
-        path:'/',
-        element:<Landing/>,
+        path: "/",
+        element: <Landing />,
       },
       {
-        path:'/favourites-pgs',
-        element:<Favourites/>,
+        path: "/aboutus",
+        element: <AboutUs />,
       },
       {
-        path:'/education',
-        element:<Education/>,
+        path: "/favourites-pgs",
+        element: <Favourites />,
       },
       {
-        path:'/listed-PGs',
-        element:<Locations/>,
+        path: "/pg-details",
+        element: <PGDetails />,
+      },
+      {
+        path: "/education",
+        element: <Education />,
+      },
+      {
+        path: "/cart",
+        element: (
+          <ProtectedRoute>
+            <Addtocart />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/listed-PGs",
+        element: (
+          <ProtectedRoute>
+            <Locations />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
 ]);
 
 function App() {
-  
-  return (
-      <RouterProvider router={router}/>
-  );
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
