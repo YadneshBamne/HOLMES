@@ -12,6 +12,7 @@ import { PGDetails } from "./pages/pgdetails";
 import { AboutUs } from "./pages/aboutus";
 import Addtocart from "./pages/Addtocart";
 import PaymentForm from "./pages/PaymentForm";
+import AddPG from "./pages/AddPG";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Locations />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/addpg",
+        element: (
+          <ProtectedRoute>
+            <AddPG />
           </ProtectedRoute>
         ),
       },

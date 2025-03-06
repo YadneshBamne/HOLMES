@@ -32,9 +32,9 @@ export default function Favourites() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF6EA]">
-      <div className="p-6">
-        <h2 className="text-xl font-bold mb-6">Your Favourites</h2>
+    <div className="min-h-screen items-center my-auto bg-white">
+      <div className="p-6 ">
+        <h2 className="text-2xl font-bold mb-6 text-center">Your Favourites</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {favourites.length > 0 ? (
             favourites.map((pg, index) => (
@@ -89,7 +89,7 @@ export default function Favourites() {
               </Card>
             ))
           ) : (
-            <p className="text-center text-gray-500 col-span-full">
+            <p className="text-center text-red-500 col-span-full">
               No favourites added.
             </p>
           )}

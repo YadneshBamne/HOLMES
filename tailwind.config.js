@@ -4,9 +4,9 @@ module.exports = {
     content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
   	extend: {
-		backgroundImage: {
-			"gradient-radial": "radial-gradient(circle, var(--tw-gradient-stops))",
-		  },
+  		backgroundImage: {
+  			'gradient-radial': 'radial-gradient(circle, var(--tw-gradient-stops))'
+  		},
   		fontFamily: {
   			playwrite: [
   				'Playwrite AU SA"',
@@ -69,11 +69,21 @@ module.exports = {
   			'color-2': 'hsl(var(--color-2))',
   			'color-3': 'hsl(var(--color-3))',
   			'color-4': 'hsl(var(--color-4))',
-  			'color-5': 'hsl(var(--color-5))'
+  			'color-5': 'hsl(var(--color-5))',
+  			sidebar: {
+  				DEFAULT: 'hsl(var(--sidebar-background))',
+  				foreground: 'hsl(var(--sidebar-foreground))',
+  				primary: 'hsl(var(--sidebar-primary))',
+  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+  				accent: 'hsl(var(--sidebar-accent))',
+  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+  				border: 'hsl(var(--sidebar-border))',
+  				ring: 'hsl(var(--sidebar-ring))'
+  			}
   		},
   		animation: {
-			"gradient-shift": "gradient-shift 15s ease infinite",
-        float: "float 10s ease-in-out infinite",
+  			'gradient-shift': 'gradient-shift 15s ease infinite',
+  			float: 'float 10s ease-in-out infinite',
   			grid: 'grid 15s linear infinite',
   			rainbow: 'rainbow var(--speed, 2s) infinite linear',
   			'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
@@ -83,16 +93,28 @@ module.exports = {
   			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite'
   		},
   		keyframes: {
-			"gradient-shift": {
-          "0%": { "background-position": "0% 50%" },
-          "50%": { "background-position": "100% 50%" },
-          "100%": { "background-position": "0% 50%" },
-        },
-        float: {
-          "0%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-20px)" },
-          "100%": { transform: "translateY(0)" },
-        },
+  			'gradient-shift': {
+  				'0%': {
+  					'background-position': '0% 50%'
+  				},
+  				'50%': {
+  					'background-position': '100% 50%'
+  				},
+  				'100%': {
+  					'background-position': '0% 50%'
+  				}
+  			},
+  			float: {
+  				'0%': {
+  					transform: 'translateY(0)'
+  				},
+  				'50%': {
+  					transform: 'translateY(-20px)'
+  				},
+  				'100%': {
+  					transform: 'translateY(0)'
+  				}
+  			},
   			grid: {
   				'0%': {
   					transform: 'translateY(-50%)'

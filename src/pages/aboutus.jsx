@@ -1,7 +1,7 @@
 import React from "react";
-import Images from "@/images/images";
+import Images from "@/Images/Images";
 import { Image } from "lucide-react";
-import IMAGES from "../images/IMAGES";
+import IMAGES from "../Images/Images";
 import InteractiveHoverButton from "@/components/ui/interactive-hover-button";
 import { Link } from "react-router-dom";
 import Footer from "@/components/Footer";

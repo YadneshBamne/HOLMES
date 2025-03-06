@@ -192,7 +192,7 @@ export function Locations() {
 
   return (
     <>
-      <div className="flex min-h-screen bg-gray-100">
+      <div className="flex min-h-screen bg-white">
         {/* Sidebar Filter Section */}
         <aside className="w-64 bg-white shadow-lg p-4">
           <h2 className="text-lg font-bold mb-4">Filters</h2>
