@@ -159,7 +159,7 @@ const Landing = () => {
           <Accordion type="single" collapsible className="p-10">
             {faqs.map((faq, index) => {
               return (
-                <div className="bg-[#61A0AF] m-2 rounded-xl p-3">
+                <div className="bg-zinc-600 m-2 rounded-xl p-3">
                   <AccordionItem key={index} value={`item-${index + 1}`}>
                     <>
                       <AccordionTrigger className="text-left text-white text-3xl">

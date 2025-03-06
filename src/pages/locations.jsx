@@ -109,6 +109,16 @@ export function Locations() {
       liked: false,
       rating: 4.1, // Initial liked status
     },
+    {
+      name: "Ap shah ",
+      location: "Thane, Mumbai",
+      price: "₹6,500/month",
+      features: "Laundry, WiFi, 24x7 Security",
+      image:
+        "https://content.jdmagicbox.com/comp/def_content/paying_guest_accommodations/default-paying-guest-accommodations-6.jpg",
+      liked: false,
+      rating: 4.1, // Initial liked status
+    },
   ];
 
   const amenitiesOptions = [

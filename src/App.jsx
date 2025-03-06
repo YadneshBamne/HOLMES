@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { PGDetails } from "./pages/pgdetails";
 import { AboutUs } from "./pages/aboutus";
 import Addtocart from "./pages/Addtocart";
+import PaymentForm from "./pages/PaymentForm";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Addtocart />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/payment",
+        element: (
+          <ProtectedRoute>
+            <PaymentForm />
           </ProtectedRoute>
         ),
       },
