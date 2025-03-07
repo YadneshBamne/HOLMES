@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Building2Icon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import supabase from "@/config/SupabaseClient";
 
 const pgSchema = z.object({
   name: z.string().min(3, "PG name must be at least 3 characters"),

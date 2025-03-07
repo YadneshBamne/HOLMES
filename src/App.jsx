@@ -13,7 +13,6 @@ import { AboutUs } from "./pages/aboutus";
 import Addtocart from "./pages/Addtocart";
 import PaymentForm from "./pages/PaymentForm";
 import AddPG from "./pages/AddPG";
-import supabase from "./config/SupabaseClient";
 
 const router = createBrowserRouter([
   {

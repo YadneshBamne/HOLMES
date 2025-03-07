@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import SplitText from "@/components/ui/SplitText";
+import { Link } from "react-router-dom";
 
 export default function Addtocart() {
   const { toast } = useToast();
@@ -77,6 +78,13 @@ export default function Addtocart() {
                   >
                     Remove
                   </Button>
+                  <Link to="/payment">
+                  <Button
+                    className="bg-blue-500 hover:bg-red-300 text-white rounded-xl"
+                  >
+                    Payment
+                  </Button>
+                  </Link>
                 </div>
               </li>
             ))}
@@ -85,7 +93,7 @@ export default function Addtocart() {
 
         <div className="mt-6 flex justify-center">
           <Button
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/listed-PGs")}
             className="bg-purple-500 hover:bg-purple-300 text-black rounded-xl"
           >
             Continue Browsing
