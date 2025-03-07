@@ -1,50 +1,62 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { FaBuilding } from "react-icons/fa";
-import { Building, Building2Icon } from "lucide-react";
+import { Building2Icon } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import supabase from "@/config/SupabaseClient";
 
 const pgSchema = z.object({
   name: z.string().min(3, "PG name must be at least 3 characters"),
   address: z.string().min(5, "Address must be at least 5 characters"),
   ownerName: z.string().min(3, "Owner's name must be at least 3 characters"),
-  ownerMobile: z.string().regex(/^\d{10}$/, "Mobile number must be 10 digits"),
+  ownerMobile: z
+    .string()
+    .regex(/^\d{10}$/, "Mobile number must be 10 digits"),
   rent: z.string().regex(/^\d+$/, "Rent price must be a valid number"),
   bhk: z.enum(["1 BHK", "2 BHK", "3 BHK", "Studio"]),
-  images: z
-    .instanceof(FileList)
-    .refine((files) => files.length > 0, "At least one image is required"),
 });
 
-const AddPG = () => {
+function AddPG() {
+  const { toast } = useToast();
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(pgSchema),
   });
 
-  const [previewImages, setPreviewImages] = useState([]);
+  const onSubmit = async (formData) => {
+    try {
+      // Insert data into Supabase table
+      const { data, error } = await supabase.from('addpg').insert([
+        {
+          PG_Name: formData.name,
+          Address: formData.address,
+          Owner_Name: formData.ownerName,
+          Owner_Phone_no: formData.ownerMobile,
+          Rent_Price: formData.rent,
+          BHK: formData.bhk
+        }
+      ]);
 
-  // Handle image upload and preview
-  const handleImageUpload = (event) => {
-    const files = event.target.files;
-    setValue("images", files); // Update form state
-    const imageUrls = Array.from(files).map((file) =>
-      URL.createObjectURL(file)
-    );
-    setPreviewImages(imageUrls);
+      if (error) {
+        throw error;
+      }
+
+      // Handle success, e.g., show a success toast
+      handleClick();
+      console.log("PG added successfully:", data);
+    } catch (error) {
+      // Handle errors, e.g., show an error toast
+      console.error("Error adding PG:", error.message);
+    }
   };
 
-  const onSubmit = (data) => {
-    console.log("PG Details:", data);
-    alert("PG Listed Successfully!");
-    // TODO: Send data to backend (MongoDB, Firebase, etc.)
-  };
+  function handleClick() {
+    toast({ title: "PG Listed to HOLMES" });
+  }
 
   return (
     <div className="w-1/2 mx-auto mt-10 bg-white shadow-lg rounded-lg p-6">
@@ -56,7 +68,6 @@ const AddPG = () => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* PG Name */}
-
         <div>
           <label className="block text-sm font-medium text-gray-700">
             PG Name
@@ -85,7 +96,7 @@ const AddPG = () => {
           )}
         </div>
 
-        {/* Owner Name */}
+        {/* Owner's Name */}
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Owner's Name
@@ -115,7 +126,7 @@ const AddPG = () => {
           )}
         </div>
 
-        {/* Rent */}
+        {/* Rent Price */}
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Rent Price (₹)
@@ -150,49 +161,19 @@ const AddPG = () => {
           )}
         </div>
 
-        {/* Image Upload */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Upload Images
-          </label>
-          <input
-            type="file"
-            accept="image/*"
-            multiple
-            onChange={handleImageUpload}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-          />
-          {errors.images && (
-            <p className="text-red-500 text-sm">{errors.images.message}</p>
-          )}
-        </div>
-
-        {/* Image Preview */}
-        {previewImages.length > 0 && (
-          <div className="grid grid-cols-3 gap-2 mt-3">
-            {previewImages.map((src, index) => (
-              <img
-                key={index}
-                src={src}
-                alt="Preview"
-                className="w-24 h-24 object-cover rounded-md"
-              />
-            ))}
-          </div>
-        )}
-
         {/* Submit Button */}
-        <div className="flex justify-center ">
-        <button
-          type="submit"
-          className="w-5/6 mt-5 rounded-xl flex justify-center bg-purple-600 text-white py-2 px-4 hover:bg-purple-700"
-        >
-          List PG
-        </button>
+        <div className="flex justify-center">
+          <button
+            type="submit"
+            onClick={handleClick}
+            className="w-5/6 mt-5 rounded-xl flex justify-center bg-purple-600 text-white py-2 px-4 hover:bg-purple-700"
+          >
+            List PG
+          </button>
         </div>
       </form>
     </div>
   );
-};
+}
 
 export default AddPG;
